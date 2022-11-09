@@ -1,9 +1,17 @@
 
+
 function kargatu(){
 
-    let datubase = fetch("../services/competitions.json").then(res => res.json()).then(data => console.log(data))
-    console.log(datubase);
-
+    fetch('http://api.football-data.org/v4/competitions').then(r => r.json())
+    .then(data => {
+        console.log(data.competitions.filter(itm => itm.id==2014))
+    });
+    console.log('aaaa');
+    
+    
+    
+    
+    //Aurreko ariketak (openLibrary) ________________________________________________________________________________
     /*
     aurrera.addEventListener('click', (event) => {
         if (indizea < datubasea.length-1)
