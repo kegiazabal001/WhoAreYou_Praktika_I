@@ -3,6 +3,7 @@
 import { stringToHTML } from './fragments.js';
 // .... setupRows .....
 export { setupRows };
+import { higher, lower } from './fragments.js';
 
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
@@ -58,7 +59,7 @@ let setupRows = function (game) {
             `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
             `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
             `${guess.position}`,
-            `${getAge(guess.birthdate)}`
+            `${check('birthdate', guess.birthdate)=='higher' ? higher : check('birthdate', guess.birthdate)=='lower' ? lower : check('birthdate', guess.birthdate)=='correct' ? getAge(guess.birthdate) : ''}`,
         ]
     }
 

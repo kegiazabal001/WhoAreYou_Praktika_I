@@ -1,7 +1,7 @@
 import { folder, leftArrow } from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
 //import { setupRows } from "./rows.js"; milestone2-koa
-import {autocomplete} from "./autocomplete.js";
+import { autocomplete } from "./autocomplete.js";
 
 function differenceInDays(date1) {
   // YOUR CODE HERE
@@ -87,7 +87,7 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
       //
     });
     */
-    
+
     // Milestone3 ariketakoa:
     autocomplete(document.getElementById("myInput"), game);
 
