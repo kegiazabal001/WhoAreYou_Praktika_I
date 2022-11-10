@@ -15,6 +15,7 @@ window.onload = function () {
     "gamenumber"
   ).innerText = difference_In_Days.toString();
   document.getElementById("back-icon").innerHTML = folder + leftArrow;
+  document.getElementById("mistery").style = "--tw-blur:blur(0px);";
 };
 
 let game = {
