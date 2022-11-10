@@ -2,6 +2,7 @@ import { folder, leftArrow } from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
 
 function differenceInDays(date1) {
+  // YOUR CODE HERE
   let gaur = new Date();
   let difference_In_Time = Math.abs(gaur.getTime() - date1.getTime());
   let difference_In_Days = Math.floor(difference_In_Time / (1000 * 3600 * 24));
@@ -52,6 +53,14 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
       "mistery"
     ).src = `https://playfootball.games/media/players/${game.solution.id % 32
     }/${game.solution.id}.png`;
+    
 
+      // YOUR CODE HERE
+      let addRow = setupRows( /* THIS NEEDS A PARAMETER */ );
+      // get myInput object...
+        // when the user types a number an press the Enter key:
+          addRow( /* the ID of the player, where is it? */);
+      //  
+  
   }
 );
