@@ -34,7 +34,7 @@ let setupRows = function (game) {
         // YOUR CODE HERE
         let erantzuna = 'incorrect';
         if (theKey == 'birthdate') {
-            let difference = theValue - game.solution[theKey];
+            let difference = getAge(theValue) - getAge(game.solution[theKey]);
             if (difference == 0) {
                 erantzuna = 'correct';
             } else if (difference > 0) {
@@ -49,6 +49,7 @@ let setupRows = function (game) {
                 erantzuna = 'incorrect';
             }
         }
+        return erantzuna;
     }
 
     function setContent(guess) {
