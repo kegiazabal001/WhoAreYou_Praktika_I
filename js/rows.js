@@ -16,10 +16,32 @@ let setupRows = function (game) {
 
     function getAge(dateString) {
         // YOUR CODE HERE
+        let gaur = new Date();
+        let difference_In_Time = Math.abs(gaur.getTime() - dateString.getTime());
+        let difference_In_Days = Math.floor(difference_In_Time / (1000 * 3600 * 24));
+        let difference_In_Years = Math.floor(difference_In_Days / 365);
+        return difference_In_Years;
     }
     
     let check = function (theKey, theValue) {
-            // YOUR CODE HERE
+        // YOUR CODE HERE
+        let erantzuna = 'incorrect';
+        if (theKey == 'birthdate') {
+            let difference = theValue - game.solution[theKey];
+            if (difference == 0) {
+                erantzuna = 'correct';
+            } else if (difference > 0) {
+                erantzuna = 'higher';
+            } else {
+                erantzuna = 'lower';
+            }
+        } else {
+            if (theValue == game.solution[theKey]) {
+                erantzuna = 'correct';
+            } else {
+                erantzuna = 'incorrect';
+            }
+        }
     }
 
     function setContent(guess) {
@@ -56,7 +78,9 @@ let setupRows = function (game) {
     }
 
     let getPlayer = function (playerId) {
-            // YOUR CODE HERE   
+            // YOUR CODE HERE
+            let player = game.players.find(player => player.id == playerId);
+            return player;
     }
 
     return /* addRow */ function (playerId) {
