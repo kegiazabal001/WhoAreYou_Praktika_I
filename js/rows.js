@@ -6,19 +6,17 @@ export { setupRows };
 
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
-const language = { 564: 'es1', 8: 'en1', 82: 'de1', 384: 'it1', 301: 'fr1' };
+const flags = { 564: 'es1', 8: 'en1', 82: 'de1', 384: 'it1', 301: 'fr1' };
 
 let setupRows = function (game) {
 
     // jokalariek ez dute leagueId, beraz beti null izango da atributua
     function leagueToFlag(leagueId) {
         // YOUR CODE HERE
-        /*
-        let flag = language[leagueId];
+        
+        let flag = flags[leagueId];
         console.log("leageID:" + flag +', '+ leagueId);
         return flag;
-        */
-        return "es1";
     }
 
 
