@@ -65,8 +65,8 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
       if (event.key == "Enter") {
         let myInputValue = myInput.value;
         addRow(myInputValue);  /* the ID of the player, where is it? */
-        /*  copilot-ek idatzia:
-        let myInputValue = myInput.value;
+        //  copilot-ek idatzia:
+        /*
         let myInputKey = myInput.getAttribute("data-key");
         let myInputResult = check(myInputKey, myInputValue);
         if (myInputResult == "correct") {
