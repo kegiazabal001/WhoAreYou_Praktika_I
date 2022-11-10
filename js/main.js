@@ -71,5 +71,11 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
 
     // Milestone3 ariketakoa:
     autocomplete(document.getElementById("myInput"), game);
+
+
+    let myInput = document.getElementById("myInput");
+    myInput.addEventListener("click", function (event) {
+      myInput.value = "";
+    });
   }
 );
