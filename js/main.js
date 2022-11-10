@@ -1,6 +1,7 @@
 import { folder, leftArrow } from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
-import { setupRows } from "./rows.js";
+//import { setupRows } from "./rows.js"; milestone2-koa
+import {autocomplete} from "./autocomplete.js";
 
 function differenceInDays(date1) {
   // YOUR CODE HERE
@@ -55,7 +56,7 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
     ).src = `https://playfootball.games/media/players/${game.solution.id % 32
     }/${game.solution.id}.png`;
 
-
+    /* Milestone2 ariketakoa:
     // YOUR CODE HERE
     let addRow = setupRows(game);
     // get myInput object...
@@ -66,7 +67,7 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
         let myInputValue = myInput.value;
         addRow(myInputValue);
         //  copilot-ek idatzia baina ez dut uste behar denik:
-        /*
+        
         let myInputKey = myInput.getAttribute("data-key");
         let myInputResult = check(myInputKey, myInputValue);
         if (myInputResult == "correct") {
@@ -81,11 +82,17 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
         } else {
           myInput.style.backgroundColor = "white";
           myInput.style.color = "black";
-        }
-        */
-        
+        }        
       }
       //
     });
+    */
+    
+    // Milestone3 ariketakoa:
+    autocomplete(document.getElementById("myInput"), game);
+
+
+
+
   }
 );

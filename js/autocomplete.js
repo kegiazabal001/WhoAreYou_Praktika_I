@@ -1,6 +1,6 @@
-import {setupRows} from "./rows.js";
+import { setupRows } from "./rows.js";
 
-export {autocomplete}
+export { autocomplete }
 
 function autocomplete(inp, game) {
 
@@ -29,15 +29,14 @@ function autocomplete(inp, game) {
         /*for each item in the array...*/
         for (i = 0; i < players.length; i++) {
             /*check if the item starts with the same letters as the text field value:*/
-            if ( /* YOUR CODE HERE */ ) {
+            if (players[i].name.substr(0, val.length).toUpperCase() == val.toUpperCase()) { /* YOUR CODE HERE */
 
                 b = document.createElement("DIV");
                 b.classList.add('flex', 'items-start', 'gap-x-3', 'leading-tight', 'uppercase', 'text-sm');
                 b.innerHTML = `<img src="https://cdn.sportmonks.com/images/soccer/teams/${players[i].teamId % 32}/${players[i].teamId}.png"  width="28" height="28">`;
-
                 /*make the matching letters bold:*/
                 b.innerHTML += `<div class='self-center'>
-                                    <span class='font-bold'> YOUR CODE HERE : koinziditzen duten hizkiak beltzez</span><span class>YOUR CODE HERE: gainontzeko izena</span>
+                                    <span class='font-bold'>${val.toUpperCase()}</span><span class>${players[i].name.substr(val.length).toUpperCase()}</span>
                                     <input type='hidden' name='name' value='${players[i].name}'>
                                     <input type='hidden' name='id' value='${players[i].id}'>
                                 </div>`;
@@ -52,6 +51,7 @@ function autocomplete(inp, game) {
                     closeAllLists();
 
                     /* YOUR CODE HERE */
+                    addRow(inp.value);
                 });
                 a.appendChild(b);
             }
