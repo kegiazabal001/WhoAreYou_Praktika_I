@@ -1,28 +1,32 @@
 // YOUR CODE HERE :  
 // .... stringToHTML ....
+import { stringToHTML } from './fragments.js';
 // .... setupRows .....
+export { setupRows };
 
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
-
+const language = { 564: 'es1', 8: 'en1', 82: 'de1', 384: 'it1', 301: 'fr1' };
 
 let setupRows = function (game) {
 
 
     function leagueToFlag(leagueId) {
         // YOUR CODE HERE
+        return language[leagueId];
     }
 
 
     function getAge(dateString) {
         // YOUR CODE HERE
         let gaur = new Date();
-        let difference_In_Time = Math.abs(gaur.getTime() - dateString.getTime());
+        let date = new Date(dateString);
+        let difference_In_Time = Math.abs(gaur - date);
         let difference_In_Days = Math.floor(difference_In_Time / (1000 * 3600 * 24));
         let difference_In_Years = Math.floor(difference_In_Days / 365);
         return difference_In_Years;
     }
-    
+
     let check = function (theKey, theValue) {
         // YOUR CODE HERE
         let erantzuna = 'incorrect';
@@ -78,9 +82,9 @@ let setupRows = function (game) {
     }
 
     let getPlayer = function (playerId) {
-            // YOUR CODE HERE
-            let player = game.players.find(player => player.id == playerId);
-            return player;
+        // YOUR CODE HERE
+        let player = game.players.find(player => player.id == playerId);
+        return player;
     }
 
     return /* addRow */ function (playerId) {

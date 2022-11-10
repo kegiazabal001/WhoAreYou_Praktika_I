@@ -1,5 +1,6 @@
 import { folder, leftArrow } from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
+import { setupRows } from "./rows.js";
 
 function differenceInDays(date1) {
   // YOUR CODE HERE
@@ -53,14 +54,38 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
       "mistery"
     ).src = `https://playfootball.games/media/players/${game.solution.id % 32
     }/${game.solution.id}.png`;
-    
 
-      // YOUR CODE HERE
-      let addRow = setupRows( /* THIS NEEDS A PARAMETER */ );
-      // get myInput object...
-        // when the user types a number an press the Enter key:
-          addRow( /* the ID of the player, where is it? */);
-      //  
-  
+
+    // YOUR CODE HERE
+    let addRow = setupRows(game);
+    // get myInput object...
+    let myInput = document.getElementById("myInput");
+    // when the user types a number an press the Enter key:
+    document.addEventListener("keydown", function (event) {
+      if (event.key == "Enter") {
+        let myInputValue = myInput.value;
+        addRow(myInputValue);  /* the ID of the player, where is it? */
+        /*  copilot-ek idatzia:
+        let myInputValue = myInput.value;
+        let myInputKey = myInput.getAttribute("data-key");
+        let myInputResult = check(myInputKey, myInputValue);
+        if (myInputResult == "correct") {
+          myInput.style.backgroundColor = "green";
+          myInput.style.color = "white";
+        } else if (myInputResult == "higher") {
+          myInput.style.backgroundColor = "red";
+          myInput.style.color = "white";
+        } else if (myInputResult == "lower") {
+          myInput.style.backgroundColor = "blue";
+          myInput.style.color = "white";
+        } else {
+          myInput.style.backgroundColor = "white";
+          myInput.style.color = "black";
+        }
+        */
+        
+      }
+      //
+    });
   }
 );
