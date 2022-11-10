@@ -64,8 +64,8 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
     document.addEventListener("keydown", function (event) {
       if (event.key == "Enter") {
         let myInputValue = myInput.value;
-        addRow(myInputValue);  /* the ID of the player, where is it? */
-        //  copilot-ek idatzia:
+        addRow(myInputValue);
+        //  copilot-ek idatzia baina ez dut uste behar denik:
         /*
         let myInputKey = myInput.getAttribute("data-key");
         let myInputResult = check(myInputKey, myInputValue);
