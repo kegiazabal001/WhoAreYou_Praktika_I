@@ -13,9 +13,12 @@ let setupRows = function (game) {
     // jokalariek ez dute leagueId, beraz beti null izango da atributua
     function leagueToFlag(leagueId) {
         // YOUR CODE HERE
+        /*
         let flag = language[leagueId];
         console.log("leageID:" + flag +', '+ leagueId);
         return flag;
+        */
+        return "es1";
     }
 
 

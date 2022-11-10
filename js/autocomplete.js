@@ -51,7 +51,7 @@ function autocomplete(inp, game) {
                     closeAllLists();
 
                     /* YOUR CODE HERE */
-                    addRow(inp.value);
+                    addRow(players.filter(player => player.name === inp.value)[0].id);
                 });
                 a.appendChild(b);
             }
