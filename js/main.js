@@ -1,7 +1,7 @@
 import { folder, leftArrow } from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
-//import { setupRows } from "./rows.js"; milestone2-koa
-import { autocomplete } from "./autocomplete.js";
+//import { setupRows } from "./rows.js";              //milestone2-koa
+import { autocomplete } from "./autocomplete.js";     //milestone3-koa
 
 function differenceInDays(date1) {
   // YOUR CODE HERE
@@ -28,7 +28,6 @@ let game = {
 };
 
 function getSolution(players, solutionArray, difference_In_Days) {
-
   // YOUR CODE HERE 
   if (difference_In_Days >= solutionArray.length) {
     difference_In_Days = difference_In_Days % solutionArray.length;
@@ -66,33 +65,11 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
       if (event.key == "Enter") {
         let myInputValue = myInput.value;
         addRow(myInputValue);
-        //  copilot-ek idatzia baina ez dut uste behar denik:
-        
-        let myInputKey = myInput.getAttribute("data-key");
-        let myInputResult = check(myInputKey, myInputValue);
-        if (myInputResult == "correct") {
-          myInput.style.backgroundColor = "green";
-          myInput.style.color = "white";
-        } else if (myInputResult == "higher") {
-          myInput.style.backgroundColor = "red";
-          myInput.style.color = "white";
-        } else if (myInputResult == "lower") {
-          myInput.style.backgroundColor = "blue";
-          myInput.style.color = "white";
-        } else {
-          myInput.style.backgroundColor = "white";
-          myInput.style.color = "black";
-        }        
       }
-      //
     });
     */
 
     // Milestone3 ariketakoa:
     autocomplete(document.getElementById("myInput"), game);
-
-
-
-
   }
 );

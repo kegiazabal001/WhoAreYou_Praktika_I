@@ -11,12 +11,10 @@ const flags = { 564: 'es1', 8: 'en1', 82: 'de1', 384: 'it1', 301: 'fr1' };
 
 let setupRows = function (game) {
 
-    // jokalariek ez dute leagueId, beraz beti null izango da atributua
     function leagueToFlag(leagueId) {
         // YOUR CODE HERE
-        
         let flag = flags[leagueId];
-        console.log("leageID:" + flag +', '+ leagueId);
+        console.log("leageID:" + flag + ', ' + leagueId);
         return flag;
     }
 
@@ -59,7 +57,7 @@ let setupRows = function (game) {
             `<img src="https://playfootball.games/media/competitions/${leagueToFlag(guess.leagueId)}.png" alt="" style="width: 60%;">`,
             `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
             `${guess.position}`,
-            `${check('birthdate', guess.birthdate)=='higher' ? higher : check('birthdate', guess.birthdate)=='lower' ? lower : check('birthdate', guess.birthdate)=='correct' ? getAge(guess.birthdate) : ''}`,
+            `${check('birthdate', guess.birthdate) == 'higher' ? higher : check('birthdate', guess.birthdate) == 'lower' ? lower : check('birthdate', guess.birthdate) == 'correct' ? getAge(guess.birthdate) : ''}`,
         ]
     }
 

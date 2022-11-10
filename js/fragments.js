@@ -14,8 +14,6 @@ const stringToHTML = (str) => {
     return doc.body
 };
 
-// 8.1 ariketako 4.zatia. Kopiatu dut baina errorea ematen du.
-
 const higher = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20
 " fill="white" aria-hidden="true" width="25" style="margin-right: -8px
 ; margin-left: -3px;"><path fill-rule="evenodd" d="M5.293 7.707a1 1 0
@@ -29,9 +27,4 @@ margin-left: -3px;"><path fill-rule="evenodd" d="M14.707 12.293a1 1 0
 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z" clip-rule="evenodd"></
 path></svg>`;
 
-/*
-Jarraian, \hlc[lightgray]{ rows.js } fitxategian setContent funtzioa
-moldatu adina kontuan izan dezan dagokion lower edo higher ikurrak
-bistaratuz.
-*/
 
