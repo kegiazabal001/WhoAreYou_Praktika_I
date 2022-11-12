@@ -123,7 +123,7 @@ let setupRows = function (game) {
     function gameEnded(lastGuess) {
         // YOUR CODE HERE
         let erantzuna = false;
-        if (lastGuess == game.solution.name) {
+        if (lastGuess == game.solution.id) {
             erantzuna = true;
         } else if (x == 8) {
             erantzuna = true;
@@ -137,6 +137,14 @@ let setupRows = function (game) {
         return player;
     }
 
+    let success = function () {
+        unblur('success');
+    }
+
+    let gameOver = function () {
+        unblur('fail');
+    }
+
     return /* addRow */ function (playerId) {
 
         let guess = getPlayer(playerId)
@@ -146,7 +154,6 @@ let setupRows = function (game) {
 
         game.guesses.push(playerId)
         updateState(playerId)
-
         resetInput();
 
         if (gameEnded(playerId)) {

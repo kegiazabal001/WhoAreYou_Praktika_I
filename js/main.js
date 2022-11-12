@@ -6,12 +6,12 @@ import { autocomplete } from "./autocomplete.js";     //milestone3-koa
 function differenceInDays(date1) {
   // YOUR CODE HERE
   let gaur = new Date();
-  let difference_In_Time = Math.abs(gaur.getTime() - date1.getTime());
-  let difference_In_Days = Math.floor(difference_In_Time / (1000 * 3600 * 24));
-  return difference_In_Days;
+  let difference = Math.abs(gaur.getTime() - date1.getTime());
+  difference = Math.floor(difference / (1000 * 3600 * 24));
+  return difference;
 }
 
-let difference_In_Days = differenceInDays(new Date("08-18-2022"));
+let difference_In_Days = differenceInDays(new Date("08/18/2022"));
 
 window.onload = function () {
   document.getElementById(
