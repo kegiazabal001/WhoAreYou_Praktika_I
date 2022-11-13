@@ -74,10 +74,6 @@ function updateStats(t) {
 
 let gamestats = getStats('gameStats');
 
-
-
-
-//milstone7-koa----------------------------------------------------------------------------------------------------------------------------
 let getGame = function (what) {
     let state = localStorage.getItem(what);
     if (state) {

@@ -5,7 +5,7 @@ import { autocomplete } from "./autocomplete.js";              //milestone3-koa
 import { getGame, updateGame } from "./stats.js";
 
 
-let game = getGame("game"); //milstone7-koa------------------------------------------------------------------------------------
+let game = getGame("game"); 
 
 function differenceInDays(date1) {
   // YOUR CODE HERE
@@ -68,15 +68,13 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
     // Milestone3 ariketakoa:
     autocomplete(document.getElementById("myInput"), game);
     
-    updateGame('game', game); //milestone7-koa-----------------------------------------------------------------------------------------------------
+    updateGame('game', game); 
 
     let myInput = document.getElementById("myInput");
     myInput.addEventListener("click", function (event) {
       myInput.value = "";
     });
 
-
-    //milestone7-koa----------------------------------------------------------------------------------------------------------------------
   if(game.guesses.length > 0){
     initializeGame(getGame('game'));
   }
