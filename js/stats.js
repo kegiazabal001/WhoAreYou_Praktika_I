@@ -13,7 +13,7 @@ let initState = function (what, solutionId) {
             solution: solutionId
         }
         localStorage.setItem('WAYgameState', JSON.stringify(state));
-        emaitza.push(JSON.parse(state));
+        emaitza.push(state);
     }
 
     emaitza.push(function (guess) {
@@ -92,7 +92,7 @@ let getGame = function (what) {
   };
   
   let updateGame = function (what, game) {
-    if(game.lastSolution != game.solution.id){
+    if((game.lastSolution != game.solution.id) && (game.lastSolution != 0)) {
         game = {
             guesses: [],
             solution: {},
@@ -103,5 +103,3 @@ let getGame = function (what) {
     }
     localStorage.setItem(what, JSON.stringify(game));
   };
-  
-  //----------------------------------------------------------------------------------------------------------------------------

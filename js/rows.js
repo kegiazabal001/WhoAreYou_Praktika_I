@@ -198,7 +198,6 @@ let setupRows = function (game) {
     return /* addRow */ function (playerId) {
 
         let guess = getPlayer(playerId)
-        console.log(guess)
 
         let content = setContent(guess)
 
