@@ -7,7 +7,7 @@ import { higher, lower, stats, headless, toggle } from './fragments.js';
 import { initState, updateStats } from './stats.js';
 
 const delay = 350;
-const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
+const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate', 'number']
 const flags = { 564: 'es1', 8: 'en1', 82: 'de1', 384: 'it1', 301: 'fr1' };
 
 // From: https://stackoverflow.com/a/7254108/243532
@@ -43,11 +43,21 @@ let setupRows = function (game) {
             let difference = getAge(theValue) - getAge(game.solution[theKey]);
             if (difference == 0) {
                 erantzuna = 'correct';
-            } else if (difference > 0) {
+            } else if (difference < 0) {
                 erantzuna = 'higher';
             } else {
                 erantzuna = 'lower';
             }
+        } else if(theKey == 'number'){
+            let difference = theValue - game.solution[theKey];
+            if (difference == 0) {
+                erantzuna = 'correct';
+            } else if (difference < 0) {
+                erantzuna = 'higher';
+            } else {
+                erantzuna = 'lower';
+            }
+            
         } else {
             if (theValue == game.solution[theKey]) {
                 erantzuna = 'correct';
@@ -102,6 +112,7 @@ let setupRows = function (game) {
             `<img src="https://cdn.sportmonks.com/images/soccer/teams/${guess.teamId % 32}/${guess.teamId}.png" alt="" style="width: 60%;">`,
             `${guess.position}`,
             `${getAge(guess.birthdate)}  ${check('birthdate', guess.birthdate) == 'higher' ? higher : check('birthdate', guess.birthdate) == 'lower' ? lower : ''}`,
+            `${'#' + guess.number}  ${check('number', guess.number) == 'higher' ? higher : check('number', guess.number) == 'lower' ? lower : ''}`,
         ]
     }
 
