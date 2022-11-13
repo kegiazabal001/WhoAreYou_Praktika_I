@@ -25,17 +25,6 @@ window.onload = function () {
   setupRows(game);
 };
 
-
-// borratzeko(milestone7)----------------------------------------------------------------------------------------------------------------------
-/*
-let game = {
-  guesses: [],
-  solution: {},
-  players: [],
-  leagues: []
-};
-*/
-
 function getSolution(players, solutionArray, difference_In_Days) {
   // YOUR CODE HERE 
   if (difference_In_Days >= solutionArray.length) {
@@ -88,8 +77,6 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
 
 
     //milestone7-koa----------------------------------------------------------------------------------------------------------------------
-  console.log(game.guesses);
-  
   if(game.guesses.length > 0){
     initializeGame(getGame('game'));
   }
