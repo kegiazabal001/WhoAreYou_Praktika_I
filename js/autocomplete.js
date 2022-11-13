@@ -83,6 +83,8 @@ function autocomplete(inp, game) {
         }
     });
 
+    // players.find ( p => { return p.id == 47323 })
+
     function addActive(x) {
         /*a function to classify an item as "active":*/
         if (!x) return false;

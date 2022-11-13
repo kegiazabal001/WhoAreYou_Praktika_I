@@ -10,6 +10,11 @@ const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
 const flags = { 564: 'es1', 8: 'en1', 82: 'de1', 384: 'it1', 301: 'fr1' };
 
+// From: https://stackoverflow.com/a/7254108/243532
+function pad(a, b){
+    return(1e15 + a + '').slice(-b);
+}
+
 let setupRows = function (game) {
 
     let egoera = {
@@ -166,8 +171,14 @@ let setupRows = function (game) {
             if (game.guesses.length == 8) {
                 gameOver();
             }
+
+            let interval = /* YOUR CODE HERE */ ;
         }
 
         showContent(content, guess)
     }
+
+
+
+    
 }
