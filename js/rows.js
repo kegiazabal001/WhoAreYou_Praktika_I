@@ -3,26 +3,20 @@
 import { stringToHTML } from './fragments.js';
 // .... setupRows .....
 export { setupRows };
-import { higher, lower } from './fragments.js';
-import { initState } from './stats.js';
+import { higher, lower, stats, headless, toggle } from './fragments.js';
+import { initState, updateStats } from './stats.js';
 
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate']
 const flags = { 564: 'es1', 8: 'en1', 82: 'de1', 384: 'it1', 301: 'fr1' };
 
 // From: https://stackoverflow.com/a/7254108/243532
-function pad(a, b){
-    return(1e15 + a + '').slice(-b);
+function pad(a, b) {
+    return (1e15 + a + '').slice(-b);
 }
 
 let setupRows = function (game) {
 
-    let egoera = {
-        "guesses": [],
-        "solution": ''
-    }
-
-    localStorage.setItem('WAYgameState', JSON.stringify(egoera));
     let [state, updateState] = initState('WAYgameState', game.solution.id)
 
     function leagueToFlag(leagueId) {
@@ -83,6 +77,24 @@ let setupRows = function (game) {
         })
     }
 
+    function showStats(timeout) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                document.body.appendChild(stringToHTML(headless(stats())));
+                document.getElementById("showHide").onclick = toggle;
+                bindClose();
+                resolve();
+            }, timeout)
+        })
+    }
+
+    function bindClose() {
+        document.getElementById("closedialog").onclick = function () {
+            document.body.removeChild(document.body.lastChild)
+            document.getElementById("mistery").classList.remove("hue-rotate-180", "blur")
+        }
+    }
+
     function setContent(guess) {
         return [
             `<img src="https://playfootball.games/who-are-ya/media/nations/${guess.nationality.toLowerCase()}.svg" alt="" style="width: 60%;">`,
@@ -120,20 +132,13 @@ let setupRows = function (game) {
     function resetInput() {
         // YOUR CODE HERE
         document.getElementById("myInput").value = "";
-        x++;
-        let input = "Guess " + x + " of 8";
+        let input = "Guess " + (game.guesses.length + 1) + " of 8";
         document.getElementById("myInput").value = input;
     }
 
     function gameEnded(lastGuess) {
         // YOUR CODE HERE
-        let erantzuna = false;
-        if (lastGuess == game.solution.id) {
-            erantzuna = true;
-        } else if (x == 8) {
-            erantzuna = true;
-        }
-        return erantzuna;
+        return (lastGuess == game.solution.id) || (game.guesses.length == 8);
     }
 
     let getPlayer = function (playerId) {
@@ -143,12 +148,22 @@ let setupRows = function (game) {
     }
 
     let success = function () {
+        let input = document.getElementById("myInput");
+        input.value = "Winner!";
+        input.disabled = true;
         unblur('success');
+        showStats(2000);
     }
 
     let gameOver = function () {
+        let input = document.getElementById("myInput");
+        input.value = "Game Over";
+        input.disabled = true;
         unblur('fail');
+        showStats(2000);
     }
+
+    resetInput();
 
     return /* addRow */ function (playerId) {
 
@@ -162,7 +177,7 @@ let setupRows = function (game) {
         resetInput();
 
         if (gameEnded(playerId)) {
-            // updateStats(game.guesses.length);
+            updateStats(game.guesses.length -1);
 
             if (playerId == game.solution.id) {
                 success();
@@ -172,7 +187,30 @@ let setupRows = function (game) {
                 gameOver();
             }
 
-            let interval = /* YOUR CODE HERE */ ;
+            let interval = setInterval(function () {
+                const now = new Date();
+                //"23:59:59"
+                const hours = 23 - now.getHours();
+                const minutes = 59 - now.getMinutes();
+                const seconds = 59 - now.getSeconds();
+                let next = document.getElementById("nextPlayer");
+                next.innerHTML = "Next player in " + hours + ":" + minutes + ":" + seconds;
+            }, 1000);
+
+            /*
+            let interval = () => {
+                const endDate = "2021-02-26T00:00:00.000Z";
+                const now = new Date();
+                const end = new Date(endDate);
+                return intervalToDuration({
+                  start: now,
+                  end: end
+                });
+              };
+              
+              const dur = interval();
+              console.log("DURRATON ", JSON.stringify(dur));
+              */
         }
 
         showContent(content, guess)
@@ -180,5 +218,5 @@ let setupRows = function (game) {
 
 
 
-    
+
 }
