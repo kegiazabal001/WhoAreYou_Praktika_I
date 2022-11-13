@@ -1,4 +1,4 @@
-export { updateStats, getStats, initState }
+export { updateStats, getStats, initState , getGame, updateGame};
 
 let initState = function (what, solutionId) {
     // YOUR CODE HERE
@@ -76,3 +76,36 @@ let gamestats = getStats('gameStats');
 
 
 
+
+//milstone7-koa----------------------------------------------------------------------------------------------------------------------------
+let getGame = function (what) {
+    let state = localStorage.getItem(what);
+    if (state) {
+        state = JSON.parse(state);
+    } else {   // jokaldirik gordeta ez badago localStorage-an
+      state = {
+        guesses: [],
+        solution: {},
+        players: [],
+        leagues: [],
+        lastSolution: 0
+      };
+      updateGame('game', state);
+    }
+    return state;
+  };
+  
+  let updateGame = function (what, game) {
+    if(game.lastSolution != game.solution.id){
+        game = {
+            guesses: [],
+            solution: {},
+            players: [],
+            leagues: [],
+            lastSolution: game.solution.id
+          };
+    }
+    localStorage.setItem(what, JSON.stringify(game));
+  };
+  
+  //----------------------------------------------------------------------------------------------------------------------------

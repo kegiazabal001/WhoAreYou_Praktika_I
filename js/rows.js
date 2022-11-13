@@ -2,13 +2,15 @@
 // .... stringToHTML ....
 import { stringToHTML } from './fragments.js';
 // .... setupRows .....
-export { setupRows };
+export { setupRows, initializeGame };
 import { higher, lower, stats, headless, toggle } from './fragments.js';
-import { initState, updateStats } from './stats.js';
+import { initState, updateStats , updateGame } from './stats.js';
 
 const delay = 350;
 const attribs = ['nationality', 'leagueId', 'teamId', 'position', 'birthdate', 'number']
 const flags = { 564: 'es1', 8: 'en1', 82: 'de1', 384: 'it1', 301: 'fr1' };
+
+let initializeGame;
 
 // From: https://stackoverflow.com/a/7254108/243532
 function pad(a, b) {
@@ -24,7 +26,6 @@ let setupRows = function (game) {
         let flag = flags[leagueId];
         return flag;
     }
-
 
     function getAge(dateString) {
         // YOUR CODE HERE
@@ -57,7 +58,7 @@ let setupRows = function (game) {
             } else {
                 erantzuna = 'lower';
             }
-            
+
         } else {
             if (theValue == game.solution[theKey]) {
                 erantzuna = 'correct';
@@ -139,7 +140,6 @@ let setupRows = function (game) {
         playersNode.prepend(stringToHTML(child))
     }
 
-    let x = 0;
     function resetInput() {
         // YOUR CODE HERE
         document.getElementById("myInput").value = "";
@@ -176,6 +176,25 @@ let setupRows = function (game) {
 
     resetInput();
 
+
+    initializeGame = function (game) {
+        resetInput();
+        for (let guess of game.guesses) {
+            guess = game.players.find(player => player.id == guess);
+            let content = setContent(guess)
+            showContent(content, guess)
+            if (gameEnded(guess.id)) {                
+                if (guess.id == game.solution.id) {
+                    unblur('success');
+                }
+        
+                if (game.guesses.length == 8) {
+                    unblur('fail');
+                }
+            }
+        }
+    }
+
     return /* addRow */ function (playerId) {
 
         let guess = getPlayer(playerId)
@@ -185,10 +204,12 @@ let setupRows = function (game) {
 
         game.guesses.push(playerId)
         updateState(playerId)
+        updateGame('game', game)
         resetInput();
 
         if (gameEnded(playerId)) {
             updateStats(game.guesses.length -1);
+            updateGame('game', game);
 
             if (playerId == game.solution.id) {
                 success();
@@ -207,27 +228,10 @@ let setupRows = function (game) {
                 let next = document.getElementById("nextPlayer");
                 next.innerHTML = "Next player in " + hours + ":" + minutes + ":" + seconds;
             }, 1000);
-
-            /*
-            let interval = () => {
-                const endDate = "2021-02-26T00:00:00.000Z";
-                const now = new Date();
-                const end = new Date(endDate);
-                return intervalToDuration({
-                  start: now,
-                  end: end
-                });
-              };
-              
-              const dur = interval();
-              console.log("DURRATON ", JSON.stringify(dur));
-              */
         }
 
         showContent(content, guess)
     }
-
-
-
-
 }
+
+

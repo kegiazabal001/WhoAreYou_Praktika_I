@@ -1,0 +1,1 @@
+https://kegiazabal001.eus/praktika1/

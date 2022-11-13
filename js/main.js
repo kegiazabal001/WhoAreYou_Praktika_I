@@ -1,7 +1,11 @@
 import { folder, leftArrow } from "./fragments.js";
 import { fetchJSON } from "./loaders.js";
-//import { setupRows } from "./rows.js";              //milestone2-koa
-import { autocomplete } from "./autocomplete.js";     //milestone3-koa
+import { setupRows, initializeGame } from "./rows.js";            //milestone2-koa
+import { autocomplete } from "./autocomplete.js";              //milestone3-koa
+import { getGame, updateGame } from "./stats.js";
+
+
+let game = getGame("game"); //milstone7-koa------------------------------------------------------------------------------------
 
 function differenceInDays(date1) {
   // YOUR CODE HERE
@@ -18,14 +22,19 @@ window.onload = function () {
     "gamenumber"
   ).innerText = difference_In_Days.toString();
   document.getElementById("back-icon").innerHTML = folder + leftArrow;
+  setupRows(game);
 };
 
+
+// borratzeko(milestone7)----------------------------------------------------------------------------------------------------------------------
+/*
 let game = {
   guesses: [],
   solution: {},
   players: [],
   leagues: []
 };
+*/
 
 function getSolution(players, solutionArray, difference_In_Days) {
   // YOUR CODE HERE 
@@ -48,8 +57,6 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
 
     game.solution = getSolution(game.players, solution, difference_In_Days);
 
-    console.log(game.solution); //ezabatu proiektuaren amaieran
-
     document.getElementById(
       "mistery"
     ).src = `https://playfootball.games/media/players/${game.solution.id % 32
@@ -71,11 +78,21 @@ Promise.all([fetchJSON("fullplayers"), fetchJSON("solution")]).then(
 
     // Milestone3 ariketakoa:
     autocomplete(document.getElementById("myInput"), game);
-
+    
+    updateGame('game', game); //milestone7-koa-----------------------------------------------------------------------------------------------------
 
     let myInput = document.getElementById("myInput");
     myInput.addEventListener("click", function (event) {
       myInput.value = "";
     });
+
+
+    //milestone7-koa----------------------------------------------------------------------------------------------------------------------
+  console.log(game.guesses);
+  
+  if(game.guesses.length > 0){
+    initializeGame(getGame('game'));
   }
-);
+
+    
+});
